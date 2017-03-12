@@ -6,6 +6,7 @@ public class Terrain {
 
 	Object[][] matrice;
 	Random rand = new Random();
+	Joueur player;
 	
 	public Terrain(int x, int y)
 	{
@@ -51,7 +52,8 @@ public class Terrain {
 		}
 		
 		// Géneration du joueur
-		matrice[1][1] = new Joueur();
+		player = new Joueur(1, 1);
+		matrice[1][1] = player;
 		matrice[1][2] = "V";
 		matrice[2][1] = "V";
 	}
@@ -106,6 +108,34 @@ public class Terrain {
 		}
 		
 	}
+	
+	public Joueur getJoueur()
+	{
+		return (Joueur)matrice[player.getX()][player.getY()];
+	}
+	
+	public void moveJoueur(int x, int y)
+	{
+		if(player.getX() + x > 0 && player.getX() + x < matrice.length - 1 && player.getY() + y > 0 && player.getY() + y < matrice[0].length)
+		{
+			System.out.println("ici");
+			if(matrice[player.getX() + x][player.getY() + y].equals("V"))
+			{
+				matrice[player.getX()][player.getY()] = "V";
+				matrice[player.getX() + x][player.getY() + y] = player;
+				player.setPosX(x);
+				player.setPosy(y);
+			}
+		}
+		else
+		{
+			System.out.println("Déplacement impossible");
+		}
+	}
+	
+	
+	
+	
 	public String toString()
 	{
 		String str = "";

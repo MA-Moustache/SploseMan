@@ -8,6 +8,7 @@ public class Start {
 		Scanner scan = new Scanner(System.in);
 		int x, y;
 		Terrain jeu;
+		String move;
 		
 		do
 		{
@@ -28,6 +29,35 @@ public class Start {
 		jeu = new Terrain(y, x);
 		jeu.generer();
 		System.out.println(jeu.toString());
+		
+		do
+		{
+			System.out.println("Déplacez vous (Z Q S D ou autre pour rester sur place): ");
+			move = scan.next();
+			
+			switch(move.toLowerCase())
+			{
+				case "z" :
+					jeu.moveJoueur(-1, 0);
+					break;
+				case "q" :
+					jeu.moveJoueur(0, -1);
+					break;
+				case "s" :
+					jeu.moveJoueur(1, 0);
+					break;
+				case "d" :
+					jeu.moveJoueur(0, 1);
+					break;
+				default :
+					break;
+			}
+			
+			jeu.refresh();
+			System.out.println(jeu.toString());
+			
+		}while(jeu.getJoueur().getIsAlive());
+			
 	}
 
 }
