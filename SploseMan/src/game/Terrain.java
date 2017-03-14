@@ -3,14 +3,17 @@ package game;
 import java.util.Random;
 
 public class Terrain {
-
+	// Matrice 3 dim??
 	Object[][] matrice;
+	Bombe[][] secondaire;
 	Random rand = new Random();
 	Joueur player;
 	
 	public Terrain(int x, int y)
 	{
 		matrice = new Object[x][y];
+		// Initialisation de la matrice des bombes
+		secondaire = new Bombe[x][y];
 		System.out.println(matrice.length + " " + matrice[x-1].length);
 		
 	}
@@ -48,6 +51,7 @@ public class Terrain {
 				matrice[a][b] = new MurFragile();
 				nbMur--;
 			}
+			
 
 		}
 		
@@ -60,6 +64,7 @@ public class Terrain {
 	
 	public void refresh()
 	{
+		// OBSOLETE
 		// Diminution du temps des bombes par 1
 		for(int i = 1; i < matrice.length - 1; i++)
 		{
